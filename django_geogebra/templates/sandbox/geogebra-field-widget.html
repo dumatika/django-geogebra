@@ -1,0 +1,57 @@
+{% load static %}
+
+<script type="text/javascript" src="{% static 'js/deployggb.js' %}"></script>
+<select name="appName" id="appName">
+  <option disabled selected value> -- select calculator type --</option>
+  <option value="classic">Classic</option>
+  <option value="graphing">Graphing</option>
+  <option value="3d">3D</option>
+  <option value="suite">Suite</option>
+  <option value="evaluator">Evaluator</option>
+</select>
+<div class="contentBox" id="contentBox">
+  <script type="text/javascript">
+      function getAppName() {
+          return document.getElementById('appName').value
+      }
+
+      document.getElementById("appName").addEventListener('change', function (event) {
+          const parameters = {
+              "id": "ggbApplet",
+              "appName": getAppName(),
+              "width": 800,
+              "height": 550,
+              "showToolBar": true,
+              "borderColor": null,
+              "showMenuBar": true,
+              "allowStyleBar": true,
+              "showAlgebraInput": true,
+              "enableLabelDrags": false,
+              "enableShiftDragZoom": true,
+              "capturingThreshold": null,
+              "showToolBarHelp": false,
+              "errorDialogsActive": true,
+              "showTutorialLink": true,
+              "showLogging": true,
+              "useBrowserForJS": false,
+              {% if widget.value %}
+                  "ggbBase64": "{{ widget.value }}",
+              {% endif %}
+          };
+          const applet = new GGBApplet(parameters, true);
+          applet.inject('applet_container');
+
+          window.onsubmit = function () {
+              document.getElementById("{{ widget.name }}").value = applet.getAppletObject().getBase64();
+          }
+
+          document.getElementById('content-main').getElementsByTagName('form')[0].addEventListener("submit", function (event) {
+              if (!['_save', '_addanother', '_continue'].includes(event.submitter.name)) {
+                  event.preventDefault();
+              }
+          });
+      })
+  </script>
+  <div id="applet_container"></div>
+  <input type="hidden" name="{{ widget.name }}" id="{{ widget.name }}">
+</div>
