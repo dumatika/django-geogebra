@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django_geogebra',
 ]
 
+DJANGO_GEOGEBRA = {}  # overwritten settings here
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

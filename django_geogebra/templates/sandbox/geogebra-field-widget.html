@@ -1,3 +1,4 @@
+{% load js %}
 {% load static %}
 
 <script type="text/javascript" src="{% static 'js/deployggb.js' %}"></script>
@@ -19,21 +20,21 @@
           const parameters = {
               "id": "ggbApplet",
               "appName": getAppName(),
-              "width": 800,
-              "height": 550,
-              "showToolBar": true,
-              "borderColor": null,
-              "showMenuBar": true,
-              "allowStyleBar": true,
-              "showAlgebraInput": true,
-              "enableLabelDrags": false,
-              "enableShiftDragZoom": true,
-              "capturingThreshold": null,
-              "showToolBarHelp": false,
-              "errorDialogsActive": true,
-              "showTutorialLink": true,
-              "showLogging": true,
-              "useBrowserForJS": false,
+              "width": {{ widget.geogebra.ADMIN_WIDGET.width|js }},
+              "height": {{ widget.geogebra.ADMIN_WIDGET.height|js }},
+              "showToolBar": {{ widget.geogebra.ADMIN_WIDGET.show_toolbar|js }},
+              "showMenuBar": {{ widget.geogebra.ADMIN_WIDGET.show_menubar|js }},
+              "showAlgebraInput": {{ widget.geogebra.ADMIN_WIDGET.show_algebra_input|js }},
+              "showTutorialLink": {{ widget.geogebra.ADMIN_WIDGET.show_tutorial_link|js }},
+              "showLogging": {{ widget.geogebra.ADMIN_WIDGET.show_logging|js }},
+              "showToolBarHelp": {{ widget.geogebra.ADMIN_WIDGET.show_toolbar_help|js }},
+              "allowStyleBar": {{ widget.geogebra.ADMIN_WIDGET.allow_style_bar|js }},
+              "borderColor": {{ widget.geogebra.ADMIN_WIDGET.border_color| js }},
+              "enableLabelDrags": {{ widget.geogebra.ADMIN_WIDGET.enable_label_drags|js }},
+              "enableShiftDragZoom": {{ widget.geogebra.ADMIN_WIDGET.enable_shift_drag_zoom|js }},
+              "capturingThreshold": {{ widget.geogebra.ADMIN_WIDGET.capturingThreshold|js }},
+              "errorDialogsActive": {{ widget.geogebra.ADMIN_WIDGET.error_dialogs_active|js }},
+              "useBrowserForJS": {{ widget.geogebra.ADMIN_WIDGET.use_browser_for_JS|js }},
               {% if widget.value %}
                   "ggbBase64": "{{ widget.value }}",
               {% endif %}

@@ -4,7 +4,15 @@ This package provides Geogebra integration for Django.
 
 ## Installation
 
-Will be available soon...
+Add an app to `INSTALLED_APPS`:
+
+```python
+# settings.py
+INSTALLED_APPS = [
+    ...,
+    'django_geogebra',
+]
+```
 
 ## Usage
 

@@ -2,3 +2,5 @@ venv
 .idea
 __pycache__
 demo/db.sqlite3
+django_geogebra.egg-info
+dist
