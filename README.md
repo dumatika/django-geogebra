@@ -1,6 +1,6 @@
-# Django Geogebra
+# Django GeoGebra
 
-This package provides Geogebra integration for Django.
+This package provides [GeoGebra](https://www.geogebra.org/) integration for Django.
 
 ## Installation
 
